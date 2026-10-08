@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="About Dev Place."
+    >
+
+    <title>About - Dev Place</title>
+
+    <script>
+        (() => {
+            try {
+                const saved = JSON.parse(
+                    localStorage.getItem("devplace-settings")
+                );
+
+                document.documentElement.dataset.theme =
+                    saved && saved.theme === "light"
+                        ? "light"
+                        : "dark";
+            } catch {
+                document.documentElement.dataset.theme = "dark";
+            }
+        })();
+    </script>
+
+    <link rel="stylesheet" href="../style.css">
+
+    <script src="../scripts/main.js" defer></script>
+    <script src="../scripts/about.js" defer></script>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="container header-inner">
+
+        <a
+            href="../index.html"
+            class="logo"
+            aria-label="Dev Place - Home"
+        >
+            <img
+                src="../images/logo.svg"
+                alt="Dev Place"
+                class="logo-icon"
+            >
+
+            <span class="logo-text">
+                Dev Place
+            </span>
+        </a>
+
+        <button
+            class="menu-button"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="main-menu"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav
+            id="main-menu"
+            class="menu"
+            aria-label="Main menu"
+        >
+
+            <div class="menu-navigation">
+
+                <a href="../index.html">
+                    Home
+                </a>
+
+                <a href="../downloads/">
+                    Downloads
+                </a>
+
+                <a href="../projects/">
+                    Projects
+                </a>
+
+                <a
+                    href="../about/"
+                    aria-current="page"
+                >
+                    About
+                </a>
+
+            </div>
+
+            <div class="menu-divider"></div>
+
+            <section class="accessibility">
+
+                <div class="accessibility-heading">
+                    Accessibility
+                </div>
+
+                <div class="setting-group">
+
+                    <span class="setting-label">
+                        Theme
+                    </span>
+
+                    <div class="theme-switch">
+
+                        <button
+                            type="button"
+                            class="setting-button theme-button"
+                            data-theme-setting="dark"
+                            aria-pressed="true"
+                        >
+                            Dark
+                        </button>
+
+                        <button
+                            type="button"
+                            class="setting-button theme-button"
+                            data-theme-setting="light"
+                            aria-pressed="false"
+                        >
+                            Light
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="setting-group">
+
+                    <span class="setting-label">
+                        Text size
+                    </span>
+
+                    <div class="font-controls">
+
+                        <button
+                            type="button"
+                            class="setting-button size-button"
+                            data-font-action="decrease"
+                            aria-label="Decrease text size"
+                        >
+                            A-
+                        </button>
+
+                        <button
+                            type="button"
+                            class="setting-button size-button"
+                            data-font-action="increase"
+                            aria-label="Increase text size"
+                        >
+                            A+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="setting-button full-button"
+                    data-toggle-setting="contrast"
+                    aria-pressed="false"
+                >
+                    High contrast
+                </button>
+
+                <button
+                    type="button"
+                    class="setting-button full-button"
+                    data-toggle-setting="motion"
+                    aria-pressed="false"
+                >
+                    Reduce motion
+                </button>
+
+                <button
+                    type="button"
+                    class="reset-button"
+                    data-reset-settings="true"
+                >
+                    Reset settings
+                </button>
+
+            </section>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <section class="content">
+
+        <div class="container">
+
+            <div class="about">
+
+                <h1>
+                    About
+                </h1>
+
+                <p class="about-lead">
+                    Dev Place is a personal website for projects,
+                    downloads and useful resources.
+                </p>
+
+
+                <h2>
+                    What is Dev Place?
+                </h2>
+
+                <p>
+                    This website is a simple place to share projects,
+                    software, files and other useful resources.
+                    Most development projects are available through GitHub.
+                </p>
+
+
+                <!-- =====================================================
+                     GitHub
+                     ===================================================== -->
+
+                <section class="github">
+
+                    <h2>
+                        GitHub
+                    </h2>
+
+                    <p>
+                        <a
+                            href="https://github.com/adrian-lis"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            github.com/adrian-lis
+                        </a>
+                    </p>
+
+
+                    <div
+                        id="github-stats"
+                        class="github-stats"
+                    >
+
+                        <div>
+                            <strong id="github-repositories">
+                                —
+                            </strong>
+
+                            <span>
+                                Public Repositories
+                            </span>
+                        </div>
+
+
+                        <div>
+                            <strong id="github-stars">
+                                —
+                            </strong>
+
+                            <span>
+                                Stars
+                            </span>
+                        </div>
+
+
+                        <div>
+                            <strong id="github-followers">
+                                —
+                            </strong>
+
+                            <span>
+                                Followers
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="github-activity"
+                        class="github-activity"
+                    >
+                        Loading activity...
+                    </div>
+
+                </section>
+
+
+                <!-- =====================================================
+                     Dev Place information
+                     ===================================================== -->
+
+                <section class="devplace-info">
+
+                    <h2>
+                        Dev Place
+                    </h2>
+
+                    <p>
+                        Information about the technology and development
+                        of this website.
+                    </p>
+
+
+                    <div class="devplace-info-grid">
+
+
+                        <!-- Contributors -->
+
+                        <div class="devplace-info-item">
+
+                            <strong>
+                                Contributors
+                            </strong>
+
+                            <div
+                                id="devplace-contributors"
+                                class="devplace-info-content"
+                            >
+                                Loading...
+                            </div>
+
+                        </div>
+
+
+                        <!-- Languages -->
+
+                        <div class="devplace-info-item">
+
+                            <strong>
+                                Languages
+                            </strong>
+
+                            <div
+                                id="devplace-languages"
+                                class="devplace-info-content"
+                            >
+                                Loading...
+                            </div>
+
+                        </div>
+
+
+                        <!-- Deployment -->
+
+                        <div class="devplace-info-item">
+
+                            <strong>
+                                Deployment
+                            </strong>
+
+                            <div class="devplace-info-content">
+
+                                <span>
+                                    GitHub Pages
+                                </span>
+
+                                <a
+                                    href="https://adrian-lis.github.io/DevPlace/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    adrian-lis.github.io/DevPlace
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <div class="container-footer">
+
+        <p>
+            &copy; 2026 Dev Place.
+        </p>
+
+    </div>
+
+</footer>
+
+</body>
+
+</html>
