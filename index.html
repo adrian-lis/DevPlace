@@ -1,269 +1,202 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <meta
-        name="description"
-        content="Dev Place - projects, downloads, resources and useful tools."
-    >
+      name="description"
+      content="Dev Place - projects, downloads, resources and useful tools."
+    />
 
     <title>Dev Place</title>
 
-        <script>
-        (() => {
-            try {
-                const saved = JSON.parse(
-                    localStorage.getItem("devplace-settings")
-                );
+    <script>
+      (() => {
+        try {
+          const saved = JSON.parse(localStorage.getItem("devplace-settings"));
 
-                document.documentElement.dataset.theme =
-                    saved && saved.theme === "light"
-                        ? "light"
-                        : "dark";
-            } catch {
-                document.documentElement.dataset.theme = "dark";
-            }
-        })();
+          document.documentElement.dataset.theme =
+            saved && saved.theme === "light" ? "light" : "dark";
+        } catch {
+          document.documentElement.dataset.theme = "dark";
+        }
+      })();
     </script>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 
     <script src="scripts/main.js" defer></script>
     <script src="scripts/search.js" defer></script>
-</head>
+  </head>
 
-<body>
-
-<header class="header">
-    <div class="container header-inner">
-
+  <body>
+    <header class="header">
+      <div class="container header-inner">
         <a href="index.html" class="logo" aria-label="Dev Place - Home">
-            <img src="images/logo.svg" alt="Dev Place" class="logo-icon">
-            <span class="logo-text">Dev Place</span>
+          <img src="images/logo.svg" alt="Dev Place" class="logo-icon" />
+          <span class="logo-text">Dev Place</span>
         </a>
 
         <button
-            class="menu-button"
-            type="button"
-            aria-label="Open menu"
-            aria-expanded="false"
-            aria-controls="main-menu">
-
-            <span></span>
-            <span></span>
-            <span></span>
-
+          class="menu-button"
+          type="button"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="main-menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
 
-        <nav
-            id="main-menu"
-            class="menu"
-            aria-label="Main menu">
+        <nav id="main-menu" class="menu" aria-label="Main menu">
+          <div class="menu-navigation">
+            <a href="index.html" aria-current="page"> Home </a>
 
-            <div class="menu-navigation">
+            <a href="downloads/"> Downloads </a>
 
-                <a href="index.html" aria-current="page">
-                    Home
-                </a>
+            <a href="projects/"> Projects </a>
 
-                <a href="downloads/">
-                    Downloads
-                </a>
+            <a href="about/"> About </a>
+          </div>
 
-                <a href="projects/">
-                    Projects
-                </a>
+          <div class="menu-divider"></div>
 
-                <a href="about/">
-                    About
-                </a>
+          <section class="accessibility">
+            <div class="accessibility-heading">Accessibility</div>
 
+            <div class="setting-group">
+              <span class="setting-label"> Theme </span>
+
+              <div class="theme-switch">
+                <button
+                  type="button"
+                  class="setting-button theme-button"
+                  data-theme-setting="dark"
+                  aria-pressed="true"
+                >
+                  Dark
+                </button>
+
+                <button
+                  type="button"
+                  class="setting-button theme-button"
+                  data-theme-setting="light"
+                  aria-pressed="false"
+                >
+                  Light
+                </button>
+              </div>
             </div>
 
-            <div class="menu-divider"></div>
+            <div class="setting-group">
+              <span class="setting-label"> Text size </span>
 
-            <section class="accessibility">
-
-                <div class="accessibility-heading">
-                    Accessibility
-                </div>
-
-                <div class="setting-group">
-
-                    <span class="setting-label">
-                        Theme
-                    </span>
-
-                    <div class="theme-switch">
-
-                        <button
-                            type="button"
-                            class="setting-button theme-button"
-                            data-theme-setting="dark"
-                            aria-pressed="true">
-                            Dark
-                        </button>
-
-                        <button
-                            type="button"
-                            class="setting-button theme-button"
-                            data-theme-setting="light"
-                            aria-pressed="false">
-                            Light
-                        </button>
-
-                    </div>
-
-                </div>
-
-                <div class="setting-group">
-
-                    <span class="setting-label">
-                        Text size
-                    </span>
-
-                    <div class="font-controls">
-
-                        <button
-                            type="button"
-                            class="setting-button size-button"
-                            data-font-action="decrease"
-                            aria-label="Decrease text size">
-                            A-
-                        </button>
-
-                        <button
-                            type="button"
-                            class="setting-button size-button"
-                            data-font-action="increase"
-                            aria-label="Increase text size">
-                            A+
-                        </button>
-
-                    </div>
-
-                </div>
-
+              <div class="font-controls">
                 <button
-                    type="button"
-                    class="setting-button full-button"
-                    data-toggle-setting="contrast"
-                    aria-pressed="false">
-                    High contrast
+                  type="button"
+                  class="setting-button size-button"
+                  data-font-action="decrease"
+                  aria-label="Decrease text size"
+                >
+                  A-
                 </button>
 
                 <button
-                    type="button"
-                    class="setting-button full-button"
-                    data-toggle-setting="motion"
-                    aria-pressed="false">
-                    Reduce motion
+                  type="button"
+                  class="setting-button size-button"
+                  data-font-action="increase"
+                  aria-label="Increase text size"
+                >
+                  A+
                 </button>
+              </div>
+            </div>
 
-                <button
-                    type="button"
-                    class="reset-button"
-                    data-reset-settings="true">
-                    Reset settings
-                </button>
+            <button
+              type="button"
+              class="setting-button full-button"
+              data-toggle-setting="contrast"
+              aria-pressed="false"
+            >
+              High contrast
+            </button>
 
-            </section>
+            <button
+              type="button"
+              class="setting-button full-button"
+              data-toggle-setting="motion"
+              aria-pressed="false"
+            >
+              Reduce motion
+            </button>
 
+            <button type="button" class="reset-button" data-reset-settings="true">
+              Reset settings
+            </button>
+          </section>
         </nav>
+      </div>
+    </header>
 
-    </div>
-</header>
-
-<main>
-
-    <section class="intro">
+    <main>
+      <section class="intro">
         <div class="container">
+          <h1>Dev Place</h1>
 
-            <h1>Dev Place</h1>
-
-            <p>
-                A simple place for projects, downloads, resources and tools.
-            </p>
-
+          <p>A simple place for projects, downloads, resources and tools.</p>
         </div>
-    </section>
+      </section>
 
-    <section class="content">
+      <section class="content">
         <div class="container">
+          <div class="content-header">
+            <h2>Explore</h2>
 
-            <div class="content-header">
-
-                <h2>Explore</h2>
-
-                <div class="search">
-
-                    <input
-                        type="search"
-                        class="search-input"
-                        placeholder="Search..."
-                        aria-label="Search">
-
-                </div>
-
+            <div class="search">
+              <input
+                type="search"
+                class="search-input"
+                placeholder="Search..."
+                aria-label="Search"
+              />
             </div>
+          </div>
 
-            <ul class="link-list search-list">
+          <ul class="link-list search-list">
+            <li>
+              <a href="downloads/">
+                <strong>Downloads</strong>
 
-                <li>
-                    <a href="downloads/">
+                <span> Files and archives available for download. </span>
+              </a>
+            </li>
 
-                        <strong>Downloads</strong>
+            <li>
+              <a href="projects/">
+                <strong>Projects</strong>
 
-                        <span>
-                            Files and archives available for download.
-                        </span>
+                <span> Projects, experiments and development work. </span>
+              </a>
+            </li>
 
-                    </a>
-                </li>
+            <li>
+              <a href="about/">
+                <strong>About</strong>
 
-                <li>
-                    <a href="projects/">
-
-                        <strong>Projects</strong>
-
-                        <span>
-                            Projects, experiments and development work.
-                        </span>
-
-                    </a>
-                </li>
-
-                <li>
-                    <a href="about/">
-
-                        <strong>About</strong>
-
-                        <span>
-                            Information about Dev Place and its repository.
-                        </span>
-
-                    </a>
-                </li>
-
-            </ul>
-
+                <span> Information about Dev Place and its repository. </span>
+              </a>
+            </li>
+          </ul>
         </div>
-    </section>
+      </section>
+    </main>
 
-</main>
-
-<footer class="footer">
-    <div class="container-footer">
-
-        <p>
-            &copy; 2026 Dev Place.
-        </p>
-
-    </div>
-</footer>
-
-</body>
+    <footer class="footer">
+      <div class="container-footer">
+        <p>&copy; 2026 Dev Place.</p>
+      </div>
+    </footer>
+  </body>
 </html>

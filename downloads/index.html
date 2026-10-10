@@ -1,250 +1,183 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta
-        name="description"
-        content="Downloads and files available from Dev Place."
-    >
+    <meta name="description" content="Downloads and files available from Dev Place." />
 
     <title>Downloads - Dev Place</title>
 
     <script>
-        (() => {
-            try {
-                const saved = JSON.parse(
-                    localStorage.getItem("devplace-settings")
-                );
+      (() => {
+        try {
+          const saved = JSON.parse(localStorage.getItem("devplace-settings"));
 
-                document.documentElement.dataset.theme =
-                    saved && saved.theme === "light"
-                        ? "light"
-                        : "dark";
-            } catch {
-                document.documentElement.dataset.theme = "dark";
-            }
-        })();
+          document.documentElement.dataset.theme =
+            saved && saved.theme === "light" ? "light" : "dark";
+        } catch {
+          document.documentElement.dataset.theme = "dark";
+        }
+      })();
     </script>
 
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style.css" />
 
     <script src="../scripts/main.js" defer></script>
     <script src="../scripts/search.js" defer></script>
-</head>
+  </head>
 
-<body>
-
-<header class="header">
-    <div class="container header-inner">
-
+  <body>
+    <header class="header">
+      <div class="container header-inner">
         <a href="../index.html" class="logo" aria-label="Dev Place - Home">
-            <img src="../images/logo.svg" alt="Dev Place" class="logo-icon">
-            <span class="logo-text">Dev Place</span>
+          <img src="../images/logo.svg" alt="Dev Place" class="logo-icon" />
+          <span class="logo-text">Dev Place</span>
         </a>
-        
+
         <button
-            class="menu-button"
-            type="button"
-            aria-label="Open menu"
-            aria-expanded="false"
-            aria-controls="main-menu">
-
-            <span></span>
-            <span></span>
-            <span></span>
-
+          class="menu-button"
+          type="button"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="main-menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
 
-        <nav
-            id="main-menu"
-            class="menu"
-            aria-label="Main menu">
+        <nav id="main-menu" class="menu" aria-label="Main menu">
+          <div class="menu-navigation">
+            <a href="../index.html"> Home </a>
 
-            <div class="menu-navigation">
+            <a href="../downloads/" aria-current="page"> Downloads </a>
 
-                <a href="../index.html">
-                    Home
-                </a>
+            <a href="../projects/"> Projects </a>
 
-                <a href="../downloads/" aria-current="page">
-                    Downloads
-                </a>
+            <a href="../about/"> About </a>
+          </div>
 
-                <a href="../projects/">
-                    Projects
-                </a>
+          <div class="menu-divider"></div>
 
-                <a href="../about/">
-                    About
-                </a>
+          <section class="accessibility">
+            <div class="accessibility-heading">Accessibility</div>
 
+            <div class="setting-group">
+              <span class="setting-label"> Theme </span>
 
+              <div class="theme-switch">
+                <button
+                  type="button"
+                  class="setting-button theme-button"
+                  data-theme-setting="dark"
+                  aria-pressed="true"
+                >
+                  Dark
+                </button>
+
+                <button
+                  type="button"
+                  class="setting-button theme-button"
+                  data-theme-setting="light"
+                  aria-pressed="false"
+                >
+                  Light
+                </button>
+              </div>
             </div>
 
-            <div class="menu-divider"></div>
+            <div class="setting-group">
+              <span class="setting-label"> Text size </span>
 
-            <section class="accessibility">
-
-                <div class="accessibility-heading">
-                    Accessibility
-                </div>
-
-                <div class="setting-group">
-
-                    <span class="setting-label">
-                        Theme
-                    </span>
-
-                    <div class="theme-switch">
-
-                        <button
-                            type="button"
-                            class="setting-button theme-button"
-                            data-theme-setting="dark"
-                            aria-pressed="true">
-                            Dark
-                        </button>
-
-                        <button
-                            type="button"
-                            class="setting-button theme-button"
-                            data-theme-setting="light"
-                            aria-pressed="false">
-                            Light
-                        </button>
-
-                    </div>
-
-                </div>
-
-                <div class="setting-group">
-
-                    <span class="setting-label">
-                        Text size
-                    </span>
-
-                    <div class="font-controls">
-
-                        <button
-                            type="button"
-                            class="setting-button size-button"
-                            data-font-action="decrease"
-                            aria-label="Decrease text size">
-                            A-
-                        </button>
-
-                        <button
-                            type="button"
-                            class="setting-button size-button"
-                            data-font-action="increase"
-                            aria-label="Increase text size">
-                            A+
-                        </button>
-
-                    </div>
-
-                </div>
-
+              <div class="font-controls">
                 <button
-                    type="button"
-                    class="setting-button full-button"
-                    data-toggle-setting="contrast"
-                    aria-pressed="false">
-                    High contrast
+                  type="button"
+                  class="setting-button size-button"
+                  data-font-action="decrease"
+                  aria-label="Decrease text size"
+                >
+                  A-
                 </button>
 
                 <button
-                    type="button"
-                    class="setting-button full-button"
-                    data-toggle-setting="motion"
-                    aria-pressed="false">
-                    Reduce motion
+                  type="button"
+                  class="setting-button size-button"
+                  data-font-action="increase"
+                  aria-label="Increase text size"
+                >
+                  A+
                 </button>
+              </div>
+            </div>
 
-                <button
-                    type="button"
-                    class="reset-button"
-                    data-reset-settings="true">
-                    Reset settings
-                </button>
+            <button
+              type="button"
+              class="setting-button full-button"
+              data-toggle-setting="contrast"
+              aria-pressed="false"
+            >
+              High contrast
+            </button>
 
-            </section>
+            <button
+              type="button"
+              class="setting-button full-button"
+              data-toggle-setting="motion"
+              aria-pressed="false"
+            >
+              Reduce motion
+            </button>
 
+            <button type="button" class="reset-button" data-reset-settings="true">
+              Reset settings
+            </button>
+          </section>
         </nav>
+      </div>
+    </header>
 
-    </div>
-</header>
-
-<main>
-
-    <section class="intro">
+    <main>
+      <section class="intro">
         <div class="container">
+          <h1>Downloads</h1>
 
-            <h1>
-                Downloads
-            </h1>
-
-            <p>
-                Files and archives available for download.
-            </p>
-
+          <p>Files and archives available for download.</p>
         </div>
-    </section>
+      </section>
 
-    <section class="content">
+      <section class="content">
         <div class="container">
+          <div class="content-header">
+            <h2>Available files</h2>
 
-            <div class="content-header">
-
-                <h2>
-                    Available files
-                </h2>
-
-                <div class="search">
-
-                    <input
-                        type="search"
-                        class="search-input"
-                        placeholder="Search files..."
-                        aria-label="Search files">
-
-                </div>
-
+            <div class="search">
+              <input
+                type="search"
+                class="search-input"
+                placeholder="Search files..."
+                aria-label="Search files"
+              />
             </div>
+          </div>
 
-            <ul class="link-list search-list">
+          <ul class="link-list search-list">
+            <li>
+              <a href="../files/WinSystemInfo.zip" download>
+                <strong>System Information Tool</strong>
 
-                <li>
-                    <a href="../files/WinSystemInfo.zip" download>
-
-                        <strong>System Information Tool</strong>
-
-                        <span>
-                            A tool to gather system information on Windows.
-                        </span>
-
-                    </a>
-                </li>
-                
-            </ul>
-
+                <span> A tool to gather system information on Windows. </span>
+              </a>
+            </li>
+          </ul>
         </div>
-    </section>
+      </section>
+    </main>
 
-</main>
-
-<footer class="footer">
-    <div class="container-footer">
-
-        <p>
-            &copy; 2026 Dev Place.
-        </p>
-
-    </div>
-</footer>
-
-</body>
+    <footer class="footer">
+      <div class="container-footer">
+        <p>&copy; 2026 Dev Place.</p>
+      </div>
+    </footer>
+  </body>
 </html>
