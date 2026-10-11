@@ -2,10 +2,10 @@
 
 > A simple personal web space for **projects, downloads, resources and useful tools**.
 
-[![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)  
-[![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)  
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)  
-[![GitHub Pages](https://img.shields.io/badge/Hosted%20with-GitHub%20Pages-222222?logo=github&logoColor=white)](https://pages.github.com/)  
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![GitHub Pages](https://img.shields.io/badge/Hosted%20with-GitHub%20Pages-222222?logo=github&logoColor=white)](https://pages.github.com/)
 [![License](https://img.shields.io/badge/license-MIT-blue)](https://chatgpt.com/c/LICENSE)
 
 **[Open Dev Place →](https://adrian-lis.github.io/DevPlace/)**
@@ -19,13 +19,12 @@
 The website is built entirely with standard web technologies:
 
 - **HTML** — structure and content
-    
+
 - **CSS** — layout, styling and responsive design
-    
+
 - **JavaScript** — interaction and dynamic functionality
-    
+
 - **SVG** — scalable website graphics
-    
 
 The project is intentionally lightweight and does not rely on a frontend framework, backend or database.
 
@@ -33,20 +32,19 @@ The project is intentionally lightweight and does not rely on a frontend framewo
 
 ## Features
 
-|Area|Features|
-|:--|:--|
-|**Design**|Clean, responsive and minimal interface|
-|**Themes**|Dark and light mode|
-|**Accessibility**|High contrast, reduced motion and text-size controls|
-|**Settings**|Persistent browser preferences|
-|**Search**|Client-side website search|
-|**Projects**|Project and development showcase|
-|**Downloads**|Public files and downloadable resources|
-|**About**|Website and repository information|
-|**Navigation**|Responsive navigation menu|
-|**Graphics**|SVG-based logo|
-|**Hosting**|GitHub Pages|
-|**Backend**|Not required|
+| Area              | Features                                             |
+| :---------------- | :--------------------------------------------------- |
+| **Design**        | Clean, responsive and minimal interface              |
+| **Themes**        | Dark and light mode                                  |
+| **Accessibility** | High contrast, reduced motion and text-size controls |
+| **Settings**      | Persistent browser preferences                       |
+| **Search**        | Client-side website search                           |
+| **Projects**      | Project and development showcase                     |
+| **Downloads**     | Public files and downloadable resources              |
+| **About**         | Website and repository information                   |
+| **Navigation**    | Responsive navigation menu                           |
+| **Graphics**      | SVG-based logo                                       |
+| **Hosting**       | GitHub Pages                                         |
 
 ---
 
@@ -54,12 +52,12 @@ The project is intentionally lightweight and does not rely on a frontend framewo
 
 The site is organized into four main sections.
 
-|Section|Description|
-|:--|:--|
-|**Home**|Main landing page with an overview of available content|
-|**Downloads**|Files and resources available for download|
-|**Projects**|Projects, experiments and development work|
-|**About**|Information about the website and its repository|
+| Section       | Description                                             |
+| :------------ | :------------------------------------------------------ |
+| **Home**      | Main landing page with an overview of available content |
+| **Downloads** | Files and resources available for download              |
+| **Projects**  | Projects, experiments and development work              |
+| **About**     | Information about the website and its repository        |
 
 ---
 
@@ -70,15 +68,14 @@ Accessibility controls are integrated directly into the website.
 ### Available settings
 
 - **Dark / Light theme**
-    
+
 - **Text size adjustment**
-    
+
 - **High contrast**
-    
+
 - **Reduced motion**
-    
+
 - **Reset settings**
-    
 
 User preferences are stored locally in the browser using `localStorage`.
 
@@ -127,7 +124,7 @@ The directory is intended only for files that are safe and appropriate to make p
 
 ## Repository Structure
 
-``` text
+```text
 .
 ├── about/
 │   └── index.html
@@ -136,6 +133,7 @@ The directory is intended only for files that are safe and appropriate to make p
 │   └── index.html
 │
 ├── files/
+│   ├── VideoDownloader.zip
 │   └── WinSystemInfo.zip
 │
 ├── images/
@@ -147,27 +145,28 @@ The directory is intended only for files that are safe and appropriate to make p
 ├── scripts/
 │   ├── about.js
 │   ├── main.js
-│   ├── projects.js
 │   └── search.js
 │
 ├── .gitignore
+├── 404.html
 ├── index.html
+├── LICENCE
 ├── README.md
 └── style.css
 ```
 
 ### Main components
 
-|Component|Purpose|
-|:--|:--|
-|`index.html`|Main homepage|
-|`style.css`|Global visual design and responsive layout|
-|`scripts/main.js`|Navigation, accessibility and general UI|
-|`scripts/search.js`|Website search|
-|`scripts/about.js`|About page functionality|
-|`scripts/projects.js`|Projects functionality|
-|`images/logo.svg`|Website logo|
-|`files/`|Public downloadable files|
+| Component             | Purpose                                    |
+| :-------------------- | :----------------------------------------- |
+| `index.html`          | Main homepage                              |
+| `style.css`           | Global visual design and responsive layout |
+| `scripts/main.js`     | Navigation, accessibility and general UI   |
+| `scripts/search.js`   | Website search                             |
+| `scripts/about.js`    | About page functionality                   |
+| `scripts/projects.js` | Projects functionality                     |
+| `images/logo.svg`     | Website logo                               |
+| `files/`              | Public downloadable files                  |
 
 ---
 
@@ -221,15 +220,15 @@ No separate hosting infrastructure is required for the website.
 
 ## Design Principles
 
-|Principle|Description|
-|:--|:--|
-|**Simple**|Keep the interface clear and understandable|
-|**Lightweight**|Avoid unnecessary libraries and dependencies|
-|**Accessible**|Provide practical accessibility controls|
-|**Responsive**|Adapt to different screen sizes|
-|**Maintainable**|Keep structure, styling and functionality separated|
-|**Portable**|Use standard web technologies|
-|**Static**|No backend or database required|
+| Principle        | Description                                         |
+| :--------------- | :-------------------------------------------------- |
+| **Simple**       | Keep the interface clear and understandable         |
+| **Lightweight**  | Avoid unnecessary libraries and dependencies        |
+| **Accessible**   | Provide practical accessibility controls            |
+| **Responsive**   | Adapt to different screen sizes                     |
+| **Maintainable** | Keep structure, styling and functionality separated |
+| **Portable**     | Use standard web technologies                       |
+| **Static**       | No backend or database required                     |
 
 ---
 
@@ -261,7 +260,7 @@ This project is licensed under the **MIT License**.
 
 See [`LICENSE`](https://chatgpt.com/c/LICENSE) for the full license text.
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > The MIT License applies to the project files covered by that license. Third-party software, trademarks, external resources and separately distributed files may be subject to their own licenses and terms.
 
 ---
