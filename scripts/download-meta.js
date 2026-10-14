@@ -1,101 +1,63 @@
+"use strict";
+
 (() => {
-  "use strict";
-
-  const UNKNOWN = "Unknown";
-
-  function formatFileSize(bytes) {
-    if (!Number.isFinite(bytes) || bytes < 0) {
-      return UNKNOWN;
-    }
-
-    if (bytes < 1024) {
-      return `${bytes} B`;
-    }
-
+  function formatSize(bytes) {
+    const value = Number(bytes);
+    if (!Number.isFinite(value) || value < 0) return "Not provided";
+    if (value < 1024) return `${value} B`;
     const units = ["KB", "MB", "GB", "TB"];
-    let size = bytes / 1024;
-    let unitIndex = 0;
-
-    while (size >= 1024 && unitIndex < units.length - 1) {
+    let size = value / 1024;
+    let unit = 0;
+    while (size >= 1024 && unit < units.length - 1) {
       size /= 1024;
-      unitIndex++;
+      unit += 1;
     }
-
-    return `${size.toFixed(2)} ${units[unitIndex]}`;
+    return `${size.toFixed(size >= 10 ? 0 : 1)} ${units[unit]}`;
   }
 
   function formatDate(value) {
-    if (!value) {
-      return UNKNOWN;
-    }
-
+    if (!value) return "Not provided";
     const date = new Date(value);
-
-    if (Number.isNaN(date.getTime())) {
-      return UNKNOWN;
-    }
-
-    return new Intl.DateTimeFormat("en", {
+    if (Number.isNaN(date.getTime())) return "Not provided";
+    return new Intl.DateTimeFormat(undefined, {
       year: "numeric",
       month: "short",
       day: "numeric",
-      timeZone: "UTC",
     }).format(date);
   }
 
-  async function updateDownloadCard(card) {
-    const link = card.querySelector("a[download][href]");
-    const sizeElement = card.querySelector('[data-file-meta="size"]');
-    const updatedElement = card.querySelector('[data-file-meta="updated"]');
+  async function updateCard(card) {
+    const link = card.querySelector("a.download-card-link[href]");
+    if (!link) return;
 
-    if (!link || (!sizeElement && !updatedElement)) {
-      return;
-    }
+    const size = card.querySelector('[data-file-meta="size"]');
+    const updated = card.querySelector('[data-file-meta="updated"]');
+    const fileUrl = new URL(link.getAttribute("href"), window.location.href);
 
     try {
-      const response = await fetch(link.href, {
-        method: "HEAD",
-        cache: "no-cache",
-      });
+      const response = await fetch(fileUrl, { method: "HEAD", cache: "no-store" });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
-      }
+      const contentLength = response.headers.get("content-length");
+      const lastModified = response.headers.get("last-modified");
 
-      const contentLength = response.headers.get("Content-Length");
-      const lastModified = response.headers.get("Last-Modified");
-
-      if (sizeElement) {
-        const bytes = contentLength === null ? NaN : Number(contentLength);
-
-        sizeElement.textContent = formatFileSize(bytes);
-      }
-
-      if (updatedElement) {
-        updatedElement.textContent = formatDate(lastModified);
-      }
-    } catch (error) {
-      console.warn("Could not retrieve download metadata:", link.href, error);
-
-      if (sizeElement) {
-        sizeElement.textContent = UNKNOWN;
-      }
-
-      if (updatedElement) {
-        updatedElement.textContent = UNKNOWN;
-      }
+      if (size) size.textContent = contentLength ? formatSize(contentLength) : "Not provided";
+      if (updated) updated.textContent = lastModified ? formatDate(lastModified) : "Not provided";
+      card.dataset.fileAvailable = "true";
+    } catch {
+      if (size) size.textContent = "Unavailable";
+      if (updated) updated.textContent = "Unavailable";
+      card.dataset.fileAvailable = "false";
     }
   }
 
-  function initDownloadMetadata() {
-    document.querySelectorAll(".download-card").forEach((card) => {
-      updateDownloadCard(card);
-    });
+  function initialize() {
+    document.querySelectorAll(".download-card").forEach(updateCard);
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initDownloadMetadata);
+    document.addEventListener("DOMContentLoaded", initialize, { once: true });
   } else {
-    initDownloadMetadata();
+    initialize();
   }
 })();

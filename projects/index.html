@@ -3,16 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <meta name="description" content="Projects and development work by Dev Place." />
-
+    <meta
+      name="description"
+      content="Explore development projects by Dev Place, including Python tools, Linux configuration and command-line utilities."
+    />
+    <meta name="theme-color" content="#131318" />
     <title>Projects - Dev Place</title>
 
     <script>
       (() => {
         try {
           const saved = JSON.parse(localStorage.getItem("devplace-settings"));
-
           document.documentElement.dataset.theme =
             saved && saved.theme === "light" ? "light" : "dark";
         } catch {
@@ -20,18 +21,19 @@
         }
       })();
     </script>
+
     <link rel="icon" type="image/svg+xml" href="../images/logo.svg" />
     <link rel="stylesheet" href="../style.css" />
-
     <script src="../scripts/main.js" defer></script>
-    <script src="../scripts/search.js" defer></script>
+    <script src="../scripts/projects.js" defer></script>
+    <script src="../scripts/repo-status.js" defer></script>
   </head>
 
   <body>
     <header class="header">
       <div class="container header-inner">
         <a href="../" class="logo" aria-label="Dev Place - Home">
-          <img src="../images/logo.svg" alt="Dev Place" class="logo-icon" />
+          <img src="../images/logo.svg" alt="" class="logo-icon" />
           <span class="logo-text">Dev Place</span>
         </a>
 
@@ -42,30 +44,24 @@
           aria-expanded="false"
           aria-controls="main-menu"
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          <span></span><span></span><span></span>
         </button>
 
         <nav id="main-menu" class="menu" aria-label="Main menu">
           <div class="menu-navigation">
-            <a href="../"> Home </a>
-
-            <a href="../downloads/"> Downloads </a>
-
-            <a href="../projects/" aria-current="page"> Projects </a>
-
-            <a href="../about/"> About </a>
+            <a href="../">Home</a>
+            <a href="../downloads/">Downloads</a>
+            <a href="../projects/" aria-current="page">Projects</a>
+            <a href="../about/">About</a>
           </div>
 
           <div class="menu-divider"></div>
 
-          <section class="accessibility">
+          <section class="accessibility" aria-label="Accessibility settings">
             <div class="accessibility-heading">Accessibility</div>
 
             <div class="setting-group">
-              <span class="setting-label"> Theme </span>
-
+              <span class="setting-label">Theme</span>
               <div class="theme-switch">
                 <button
                   type="button"
@@ -75,7 +71,6 @@
                 >
                   Dark
                 </button>
-
                 <button
                   type="button"
                   class="setting-button theme-button"
@@ -88,8 +83,7 @@
             </div>
 
             <div class="setting-group">
-              <span class="setting-label"> Text size </span>
-
+              <span class="setting-label">Text size</span>
               <div class="font-controls">
                 <button
                   type="button"
@@ -99,7 +93,6 @@
                 >
                   A-
                 </button>
-
                 <button
                   type="button"
                   class="setting-button size-button"
@@ -119,7 +112,6 @@
             >
               High contrast
             </button>
-
             <button
               type="button"
               class="setting-button full-button"
@@ -128,7 +120,6 @@
             >
               Reduce motion
             </button>
-
             <button type="button" class="reset-button" data-reset-settings="true">
               Reset settings
             </button>
@@ -137,102 +128,243 @@
       </div>
     </header>
 
-    <main>
+    <main class="projects-page">
       <section class="intro">
         <div class="container">
           <h1>Projects</h1>
-
           <p>
-            Explore the various projects developed and maintained by Dev Place. Each project is
-            designed to provide valuable tools and resources for developers and enthusiasts alike.
+            Explore my development projects, configuration files and tools. Search by name or
+            description, or filter projects by category.
           </p>
         </div>
       </section>
 
       <section class="content">
         <div class="container">
-          <div class="content-header">
-            <h2>Explore Projects</h2>
-
-            <div class="search">
+          <div class="projects-toolbar">
+            <div class="projects-toolbar-copy">
+              <h2>Explore Projects</h2>
+              <p class="projects-status">Browse repositories and available downloads.</p>
+            </div>
+            <div class="projects-search">
+              <label class="sr-only" for="project-search">Search projects</label>
               <input
-                type="search"
+                id="project-search"
                 class="search-input"
-                placeholder="Search projects..."
-                aria-label="Search projects"
+                type="search"
+                placeholder="Search by name, description or tag..."
+                autocomplete="off"
               />
             </div>
           </div>
 
-          <ul class="link-list search-list">
-            <li>
-              <a href="https://github.com/adrian-lis/dotfiles" target="_blank">
-                <strong>Dotfiles</strong>
+          <div class="projects-filters" role="group" aria-label="Filter projects by category">
+            <button class="project-filter" type="button" data-category="all" aria-pressed="true">
+              All
+            </button>
+            <button
+              class="project-filter"
+              type="button"
+              data-category="Software"
+              aria-pressed="false"
+            >
+              Software
+            </button>
+            <button
+              class="project-filter"
+              type="button"
+              data-category="Configuration"
+              aria-pressed="false"
+            >
+              Configuration
+            </button>
+            <button class="project-filter" type="button" data-category="Other" aria-pressed="false">
+              Other
+            </button>
+          </div>
 
-                <span>
-                  My personal dotfiles repository, containing configuration files and scripts for
-                  Linux.
-                </span>
+          <p class="projects-results" id="projects-results" aria-live="polite">
+            Showing 4 projects
+          </p>
 
-                <img
-                  src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/github-light.svg"
-                  alt="GitHub icon"
-                  title="GitHub"
-                  class="link-icon"
-                />
-              </a>
+          <ul class="projects-grid search-list" id="projects-grid">
+            <li
+              class="project-card"
+              data-repository="adrian-lis/dotfiles"
+              data-categories="Configuration"
+              data-search="dotfiles linux shell configuration scripts terminal"
+            >
+              <div class="project-card-header">
+                <div class="project-card-title-row">
+                  <h3>Dotfiles</h3>
+                  <span class="project-status" data-repository-status>Checking repository…</span>
+                </div>
+                <p class="project-card-subtitle">Linux environment configuration</p>
+              </div>
+              <div class="project-card-body">
+                <p>
+                  Personal configuration files and scripts for setting up and maintaining a Linux
+                  environment.
+                </p>
+                <div class="project-tags" aria-label="Project tags">
+                  <span class="project-tag">Configuration</span>
+                </div>
+                <div class="project-card-meta">
+                  <div class="project-meta-item">
+                    <span class="project-meta-label">Language</span
+                    ><span class="project-meta-value">Shell / Config</span>
+                  </div>
+                  <div class="project-meta-item">
+                    <span class="project-meta-label">Platform</span
+                    ><span class="project-meta-value">Linux</span>
+                  </div>
+                </div>
+              </div>
+              <div class="project-card-footer">
+                <a
+                  class="project-action"
+                  href="https://github.com/adrian-lis/dotfiles"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >View on GitHub ↗</a
+                >
+              </div>
             </li>
 
-            <li>
-              <a href="https://github.com/adrian-lis/bashconf" target="_blank">
-                <strong>Bash Config</strong>
-
-                <span>
-                  A repository containing custom Bash configuration instalation script for Linux
-                  Servers and Desktops.
-                </span>
-
-                <img
-                  src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/github-light.svg"
-                  alt="GitHub icon"
-                  title="GitHub"
-                  class="link-icon"
-                />
-              </a>
+            <li
+              class="project-card"
+              data-repository="adrian-lis/bashconf"
+              data-categories="Configuration"
+              data-search="bash config bashconf linux server desktop shell install script"
+            >
+              <div class="project-card-header">
+                <div class="project-card-title-row">
+                  <h3>Bash Config</h3>
+                  <span class="project-status" data-repository-status>Checking repository…</span>
+                </div>
+                <p class="project-card-subtitle">Shell configuration installer</p>
+              </div>
+              <div class="project-card-body">
+                <p>
+                  A repository containing a custom Bash configuration installation script for Linux
+                  servers and desktops.
+                </p>
+                <div class="project-tags" aria-label="Project tags">
+                  <span class="project-tag">Configuration</span>
+                </div>
+                <div class="project-card-meta">
+                  <div class="project-meta-item">
+                    <span class="project-meta-label">Language</span
+                    ><span class="project-meta-value">Bash</span>
+                  </div>
+                  <div class="project-meta-item">
+                    <span class="project-meta-label">Platform</span
+                    ><span class="project-meta-value">Linux</span>
+                  </div>
+                </div>
+              </div>
+              <div class="project-card-footer">
+                <a
+                  class="project-action"
+                  href="https://github.com/adrian-lis/bashconf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >View on GitHub ↗</a
+                >
+              </div>
             </li>
 
-            <li>
-              <a href="https://github.com/adrian-lis/WinSystemInfo" target="_blank">
-                <strong>Windows System Info</strong>
-
-                <span>
-                  A simple tool to display detailed information about the Windows system.
-                </span>
-
-                <img
-                  src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/github-light.svg"
-                  alt="GitHub icon"
-                  title="GitHub"
-                  class="link-icon"
-                />
-              </a>
+            <li
+              class="project-card"
+              data-repository="adrian-lis/WinSystemInfo"
+              data-categories="Software"
+              data-search="windows system info winsysteminfo python windows hardware software system details utility Software"
+            >
+              <div class="project-card-header">
+                <div class="project-card-title-row">
+                  <h3>Windows System Info</h3>
+                  <span class="project-status" data-repository-status>Checking repository…</span>
+                </div>
+                <p class="project-card-subtitle">Windows system diagnostics</p>
+              </div>
+              <div class="project-card-body">
+                <p>
+                  A Windows utility that displays detailed information about the operating system
+                  and computer.
+                </p>
+                <div class="project-tags" aria-label="Project tags">
+                  <span class="project-tag">Software</span>
+                </div>
+                <div class="project-card-meta">
+                  <div class="project-meta-item">
+                    <span class="project-meta-label">Language</span
+                    ><span class="project-meta-value">Python</span>
+                  </div>
+                  <div class="project-meta-item">
+                    <span class="project-meta-label">Platform</span
+                    ><span class="project-meta-value">Windows</span>
+                  </div>
+                </div>
+              </div>
+              <div class="project-card-footer">
+                <a
+                  class="project-action"
+                  href="https://github.com/adrian-lis/WinSystemInfo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >View on GitHub ↗</a
+                >
+              </div>
             </li>
 
-            <li>
-              <a href="https://github.com/adrian-lis/VideoDownloader" target="_blank">
-                <strong>Video Downloader</strong>
-
-                <span> A simple video downloader for various platforms. </span>
-
-                <img
-                  src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/github-light.svg"
-                  alt="GitHub icon"
-                  title="GitHub"
-                  class="link-icon"
-                />
-              </a>
+            <li
+              class="project-card"
+              data-repository="adrian-lis/VideoDownloader"
+              data-categories="Software"
+              data-search="video downloader python terminal command line videos playlists VideoDownloader"
+            >
+              <div class="project-card-header">
+                <div class="project-card-title-row">
+                  <h3>Video Downloader</h3>
+                  <span class="project-status" data-repository-status>Checking repository…</span>
+                </div>
+                <p class="project-card-subtitle">Cross-platform command-line downloader</p>
+              </div>
+              <div class="project-card-body">
+                <p>A command-line video downloader project for downloading videos from internet.</p>
+                <div class="project-tags" aria-label="Project tags">
+                  <span class="project-tag">Software</span>
+                </div>
+                <div class="project-card-meta">
+                  <div class="project-meta-item">
+                    <span class="project-meta-label">Language</span
+                    ><span class="project-meta-value">Python</span>
+                  </div>
+                  <div class="project-meta-item">
+                    <span class="project-meta-label">Platform</span
+                    ><span class="project-meta-value">Windows / Linux</span>
+                  </div>
+                </div>
+              </div>
+              <div class="project-card-footer">
+                <a
+                  class="project-action"
+                  href="https://github.com/adrian-lis/VideoDownloader"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >View on GitHub ↗</a
+                >
+              </div>
             </li>
           </ul>
+
+          <section class="projects-empty" id="projects-empty" hidden aria-live="polite">
+            <h2>No projects found</h2>
+            <p>Try another search term or select a different category.</p>
+            <button class="project-action" type="button" id="reset-project-filters">
+              Clear search and filters
+            </button>
+          </section>
         </div>
       </section>
     </main>
